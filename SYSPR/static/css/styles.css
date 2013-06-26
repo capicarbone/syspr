@@ -1,0 +1,27 @@
+	
+.cells-center th,
+.cells-center td{
+	text-align: center;
+}
+
+.no-visible, .tooltip-data{
+	visibility: hidden;
+	display: none;
+}
+
+.cabezera-azul th{
+	background-image: linear-gradient(bottom, rgb(232,232,232) 0%, rgb(247,247,247) 64%);
+	background-image: -o-linear-gradient(bottom, rgb(232,232,232) 0%, rgb(247,247,247) 64%);
+	background-image: -moz-linear-gradient(bottom, rgb(232,232,232) 0%, rgb(247,247,247) 64%);
+	background-image: -webkit-linear-gradient(bottom, rgb(232,232,232) 0%, rgb(247,247,247) 64%);
+	background-image: -ms-linear-gradient(bottom, rgb(232,232,232) 0%, rgb(247,247,247) 64%);
+		color: #525252;
+	text-shadow: 1px 1px white;
+}
+
+.footer{
+	padding: 70px 0;
+	margin-top: 70px;
+	border-top: 1px solid #E5E5E5;
+	background-color: whiteSmoke;
+}

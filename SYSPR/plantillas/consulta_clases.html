@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block header %}
+	<h1>Clases realizadas</h1>
+{% endblock header %}
+
+{% block contenido %}
+
+	{{claseForm.errors}}
+	
+	{% if  admin %}
+		<div class="row">
+			<div class="span12">
+				<div class="btn-toolbar">
+					<a class="btn btn-primary" href="#claseForm" data-toggle="modal"><i class="icon-facetime-video icon-white"></i>  Nueva clase</a>
+				</div>							
+			</div>							
+		</div>
+	{% endif %}	
+	
+	<div class="row">
+		<div class="span12">
+			<table class="table table-bordered">
+				<thead class="cabezera-azul">
+					<tr>
+						<th>Semana</th>
+						<th>Fecha</th>
+						<th>Lugar</th>
+						<th>Contenido revisado</th>
+						<th>Asistentes</th>
+						{% if admin %}
+							<th>Opciones</th>	
+						{% endif %}						
+					</tr>
+				</thead>
+				<tbody>
+					{% for semana in clases  %}
+						
+						<tr>
+							<td rowspan="{{semana|length}}">
+								<h5>
+									Semana {{forloop.counter}}	
+								</h5>								
+							</td>
+						
+						{% for clase in semana %}						
+									
+								{% if not forloop.first %}
+									<tr>	
+								{% endif %}
+								
+															
+								<td>{{clase.fecha|date:"l d"|capfirst}} de {{clase.fecha|date:"F"|capfirst}} de {{clase.fecha|date:"Y"}}</td>
+								<td>{{clase.nombre_lugar}}</td>
+								<td>{{clase.descripcion}}</td>
+								<td style="text-align: center; font-size: 20px">
+									{{clase.asistentes}}
+								</td>							
+								{% if admin %}
+									<td>
+										<div class="btn-group">										
+											<a class="btn" href="{% url asistencias.views.registro_asistencias clase.id %}">
+												<i class="icon-edit"></i>
+											</a>															
+											<a class="btn" href="{% url asistencias.views.consulta_clase clase.id %}">
+
+												<i class="icon-signal"></i>										
+											</a>													
+																		
+											<a class="btn" href="{% url asistencias.views.registro_asistencias clase.id %}" >
+												<i class="icon-remove">
+													
+												</i>
+											</a>
+																				
+										</div>
+									</td>	
+								{% endif %}
+								
+							</tr>
+							
+						{% endfor %}
+											
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	{% comment %}
+		Modal con el formulario para una clase nueva.
+	{% endcomment %}
+	
+	<div id="claseForm" class="modal hide fade">
+		<div class="modal-header">
+			<button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+			<h3>Registro de clase</h3>			
+		</div>
+		<form id="formClase" action="" method="post" style="margin: 0px">{% csrf_token %}
+			<div class="modal-body">					
+				<div class="form-horizontal" >
+					<fieldset>
+						{% for f in claseForm %}							
+							<div class="control-group">
+								<label for="id_{{f.html_name}}" class="control-label">{{f.label}}</label>
+								<div class="controls">
+									{{f}}		
+									<span class="help-block">{{f.help_text}}</span> 
+								</div>
+							</div>																		
+						{% endfor %}
+					</fieldset>				
+				</div>															
+			</div>		
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Guardar</button>
+			</div>
+		</form>				
+	</div>
+	
+{% endblock contenido %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block header %}
+	<h1>Detalle de clase</h1>
+	<p>
+		Clase del {{clase.fecha|date:"l d"|capfirst}} de {{clase.fecha|date:"F"|capfirst}} de {{clase.fecha|date:"Y"}}. Asistieron {{clase.n_asistentes}} alumnos. Clase 
+		{% if clase.valida %}
+			válida 
+		{% else %}
+			no válida
+		{% endif %}
+		para obtener puntuación.
+</p>
+{% endblock header %}
+
+{% block contenido %}
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>N°</th>
+				<th>Cédula</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Punto</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{% for asistencia in asistencias  %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{asistencia.alumno.cedula}}</td>
+					<td>{{asistencia.alumno.nombre}}</td>
+					<td>{{asistencia.alumno.apellido}}</td>					
+					<td>
+						{% if asistencia.punto %}
+							<span class="badge badge-success">Si</span>
+						{% else %}
+							<span class="badge badge-important">No</span>
+						{% endif %}
+					</td>
+				</tr>	
+			{% endfor %}
+			
+		</tbody>
+
+	</table>
+	
+{% endblock contenido %}

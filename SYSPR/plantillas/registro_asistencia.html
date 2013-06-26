@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block header %}
+	<h1>Registro de asistencias</h1>
+	<p class="lead">Clase del {{clase.fecha}}</p>
+{% endblock header %}
+
+{% block contenido %}
+	
+	<form action="" method="post">{% csrf_token %}		
+		<div class="row">
+			<div class="span12">
+				<div class="btn-toolbar">
+					<button class="btn btn-primary" type="submit">
+						<i class="icon-download-alt icon-white"></i>
+						Guardar asistencias
+					</button>	
+				</div>			
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<div class="navbar">
+					<div class="navbar-inner">					
+						<ul class="nav">											
+							<li class="form-search">							
+								<a><input type="text" class="input-xxlarge search-query"></a>						
+							</li>						
+						</ul>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<div class="row">		
+			<div class="span12">			
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Cédula</th>
+							<th>Nombres y Apellidos</th>
+							<th>Asistencia</th>
+							<th>Participación</th>
+						</tr>
+					</thead>
+					<tbody>											
+						{% for a in alumnos %}					
+							<tr class="alumno">
+								<td class="alumno_cedula">{{a.cedula}} </td>
+								<td class="alumno_nombre_completo">{{a.nombre}} {{a.apellido}}</td>
+								<td>
+									<input class="check_asistencia" type="checkbox" name="asistencia_{{a.id}}">
+								</td>
+								<td>
+									<input class="check_participacion" type="checkbox" name="participacion_{{a.id}}">
+								</td>
+							</tr>							
+						{% endfor %}						
+					</tbody>
+				</table>
+														
+			</div>	
+		</div>
+	</form>
+		
+{% endblock contenido %}
+
+{% block js %}
+	<script src="{{STATIC_URL}}js/bb-busqueda_alumno.js"></script>
+{% endblock js %}

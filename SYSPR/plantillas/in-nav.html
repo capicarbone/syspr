@@ -1,0 +1,35 @@
+{% comment %}
+	Barra de navegación
+{% endcomment %}
+
+<nav class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		
+			<div class="container">
+				<a href="/" class="brand" style="font-weight: bold">Preparadurias</a>
+				<ul class="nav">		
+					{% for s in secciones %}
+					{% if s.numero == secciones.actual.numero %}
+						<li class="active">
+					{% else %}
+						<li class="">
+					{% endif %}
+						<a href="/seccion/{{s.numero}}">Sección {{s.numero}}</a>
+						<span class="tooltip-data">Sección {{s.numero }}, Prof. {{s.nombre_profesor}}</span>		
+					</li>							
+				{% endfor %}
+				
+				{% if clases_pag %}
+					<li class="active">
+				{% else %}
+					<li>
+				{% endif %}			
+					<a id="resumen-clases-id" href="/clases">Resumen de clases</a>
+					<span class="tooltip-data">Detalles de clases</span>		
+				</li>
+			</ul>
+			</div>
+			
+	</div>
+</nav>
+
