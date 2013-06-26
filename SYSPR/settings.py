@@ -28,7 +28,7 @@ DATABASES = {
         'NAME': 'capicp_syspr',                      # Or path to database file if using sqlite3.
         'USER': 'capicp',                      # Not used with sqlite3.
         'PASSWORD': 'lobBaTo46;',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': 'mysql.alwaysdata.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -135,8 +135,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.admindocs',
-    'south',
+    'django.contrib.admindocs',    
     'asistencias'
 )
 
