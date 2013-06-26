@@ -13,7 +13,7 @@ RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
 SEMANAS_TOTALES = 10
 SEMANAS_CONSUMIDAS = 6
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -75,7 +75,7 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = '/static_app/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -84,6 +84,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 
     os.path.join( RUTA_PROYECTO, 'static'),
+    os.path.join( RUTA_PROYECTO, 'static_app'),
 )
 
 # List of finder classes that know how to find static files in
